@@ -1,0 +1,52 @@
+<?php require_once("form.php") ?>
+
+<!doctype html>
+<html lang="en"
+<head>
+    <meta charset = "UTF-8" >
+    <meta name = "viewport"
+      content = "width=device-width, user-scalable=no, initial-scale=1.5, maximum-scale=1.5, minimum-scale=1.5">
+<meta http-equiv="X-UA-Compatable" content="ie=edge">
+<title>Document</title>
+<body>
+<div class="reg-form">
+    <form action="./" methood="post">
+        First Name:<input type="text" name="first_name"><br/>
+        Last Name:<input type="text" name="last_name"><br/>
+        Username <input type="text" name="login" /><br>
+        Password <input type="text" name="password" /><br>
+
+        <button type="submit">
+            ОК
+        </button>
+    </form>
+
+    <?php $validate = valid($_POST) ?>
+    <?php if(!empty($validate ['error']) && $validate['error']): ?>
+        <?php foreach ($validate['messages'] as $message): ?>
+            <p style="color: red">
+                <?= message ?>
+            </p>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if (!empty($validate['success']) && $validate['success']): ?>
+        <?php foreach ($validate['messages'] as $message): ?>
+            <p style="color: red">
+                <?= $message ?>
+            </p>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
+</div>
+
+<style lang="css">
+    .reg-form{
+        text-align: center;
+        width: 100%;
+
+    }
+    </style>
+</body>
+</html>
